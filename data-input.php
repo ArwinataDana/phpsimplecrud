@@ -41,7 +41,7 @@ if(isset($_GET['status'])){
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Input Data</li>
+									<li class="breadcrumb-item active" aria-current="page">Input Produk</li>
 								</ol>
 							</div>
 						</div>
@@ -68,17 +68,13 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-input.php" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nim" class="form-label">Nama Brand</label>
-                                                <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukkan NIM Mahasiswa" required>
+                                                <label for="nim" class="form-label">Nama Produk</label>
+                                                <input type="text" class="form-control" id="nim" name="nim" placeholder="Masukkan Nama Produk" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Nama Lengkap</label>
-                                                <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Lengkap Mahasiswa" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="prodi" class="form-label">Program Studi</label>
+                                                <label for="prodi" class="form-label">Jenis Brand</label>
                                                 <select class="form-select" id="prodi" name="prodi" required>
-                                                    <option value="" selected disabled>Pilih Program Studi</option>
+                                                    <option value="" selected disabled>Pilih Brand</option>
                                                     <?php 
                                                     // Iterasi daftar program studi dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($prodiList as $prodi){
@@ -88,13 +84,9 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="alamat" class="form-label">Alamat</label>
-                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Masukkan Alamat Lengkap Sesuai KTP" required></textarea>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="provinsi" class="form-label">Provinsi</label>
-                                                <select class="form-select" id="provinsi" name="provinsi" required>
-                                                    <option value="" selected disabled>Pilih Provinsi</option>
+                                                <label for="provinsi" class="form-label">Tipe Device</label>
+                                                <select class="form-select" id="provinsi" name="device" required>
+                                                    <option value="" selected disabled>Pilih Device</option>
                                                     <?php
                                                     // Iterasi daftar provinsi dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($provinsiList as $provinsi){
@@ -104,12 +96,8 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email Valid dan Benar" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="telp" class="form-label">Nomor Telepon</label>
-                                                <input type="tel" class="form-control" id="telp" name="telp" placeholder="Masukkan Nomor Telpon/HP" pattern="[0-9+\-\s()]{6,20}" required>
+                                                <label for="email" class="form-label">Deskripsi</label>
+                                                <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Produk" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="status" class="form-label">Status</label>

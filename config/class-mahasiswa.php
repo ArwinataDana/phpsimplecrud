@@ -13,7 +13,7 @@ class Mahasiswa extends Database {
         $deskripsi     = $data['deskripsi'];
 
         // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_mahasiswa (nama, deskripsi) VALUES (?, ?)";
+        $query = "INSERT INTO tb_mahasiswa (nama_brand, deskripsi) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         // Mengecek apakah statement berhasil disiapkan
         if(!$stmt){
@@ -30,10 +30,10 @@ class Mahasiswa extends Database {
     // Method untuk mengambil semua data mahasiswa
     public function getAllMahasiswa(){
         // Menyiapkan query SQL untuk mengambil data mahasiswa beserta prodi dan provinsi
-        $query = "SELECT id_mhs, nim_mhs, nama_mhs, nama_prodi, nama_provinsi, alamat, email, telp, status_mhs 
+        $query = "SELECT nama_produk, nama_brand, jenis_device, deskripsi, status_produk
                   FROM tb_mahasiswa
-                  JOIN tb_prodi ON prodi_mhs = kode_prodi
-                  JOIN tb_provinsi ON provinsi = id_provinsi";
+                  JOIN tb_prodi ON jenis_brand = kode_brand
+                  JOIN tb_provinsi ON nama_device = id_device";
         $result = $this->conn->query($query);
         // Menyiapkan array kosong untuk menyimpan data mahasiswa
         $mahasiswa = [];

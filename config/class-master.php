@@ -13,8 +13,8 @@ class MasterData extends Database {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $prodi[] = [
-                    'id' => $row['kode_prodi'],
-                    'nama' => $row['nama_prodi']
+                    'id' => $row['kode_brand'],
+                    'nama' => $row['jenis_brand']
                 ];
             }
         }
@@ -29,8 +29,8 @@ class MasterData extends Database {
         if ($result->num_rows > 0) {
             while($row = $result->fetch_assoc()) {
                 $provinsi[] = [
-                    'id' => $row['id_provinsi'],
-                    'nama' => $row['nama_provinsi']
+                    'id' => $row['id_device'],
+                    'nama' => $row['nama_device']
                 ];
             }
         }
@@ -40,10 +40,8 @@ class MasterData extends Database {
     // Method untuk mendapatkan daftar status mahasiswa menggunakan array statis
     public function getStatus(){
         return [
-            ['id' => 1, 'nama' => 'Aktif'],
-            ['id' => 2, 'nama' => 'Tidak Aktif'],
-            ['id' => 3, 'nama' => 'Cuti'],
-            ['id' => 4, 'nama' => 'Lulus']
+            ['id' => 1, 'nama' => 'Ada'],
+            ['id' => 2, 'nama' => 'Tidak Ada'],
         ];
     }
 
@@ -51,7 +49,7 @@ class MasterData extends Database {
     public function inputProdi($data){
         $kodeProdi = $data['kode'];
         $namaProdi = $data['nama'];
-        $query = "INSERT INTO tb_prodi (kode_prodi, nama_prodi) VALUES (?, ?)";
+        $query = "INSERT INTO tb_prodi (kode_brand, nama_brand) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
