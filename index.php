@@ -18,7 +18,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Aplikasi SICMAS</h3>
+								<h3 class="mb-0">KUROSEN STORE</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -37,7 +37,7 @@
 								<div class="card">
 
 									<div class="card-header">
-										<h3 class="card-title">Selamat Datang!</h3>
+										<h3 class="card-title">Wellcome!</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -50,11 +50,12 @@
 									</div>
 
 									<div class="card-body">
-										<p>Halo user! SICMAS merupakan singkatan dari Sistem Informasi CRUD Mahasiswa, aplikasi ini bertujuan untuk mengajarkan bagaimana merancang sebuah dashboard pengelolaan dengan konsep CRUD menggunakan bahasa pemrograman PHP. Penulisan kode menggunakan OOP (Object Oriented Programming). Silakan gunakan secara bijak dan modifikasi sesuai keperluan!</p>
-										<p>Silakan pilih salah satu tombol untuk memulai!</p>
-										<a href="data-input.php" class="btn btn-primary btn-lg"><i class="bi bi-clipboard-data-fill"></i> Input Data Mahasiswa</a>
-										<a href="data-list.php" class="btn btn-success btn-lg"><i class="bi bi-card-list"></i> Lihat Daftar Mahasiswa</a>
-										<a href="data-search.php" class="btn btn-warning btn-lg"><i class="bi bi-search-heart-fill"></i> Cari Mahasiswa</a>
+										<p>Kurosen Store hadir sebagai destinasi utama bagi para vapers yang mencari kualitas dan gaya dalam satu tempat. Kami menyediakan berbagai kebutuhan vaping seperti coil, kapas, baterai, hingga device dari brand terpercaya. Setiap produk dipilih dengan teliti untuk memastikan performa terbaik di setiap tarikan. Lebih dari sekadar toko, Kurosen Store adalah simbol dari gaya hidup modern — tenang, kuat, dan autentik. Kami percaya bahwa vaping bukan sekadar kebiasaan, tapi cara untuk mengekspresikan karakter.
+										</p>
+										<p>Where Flavor Meets your Soul.</p>
+										<a href="data-input.php" class="btn btn-primary btn-lg"><i class="bi bi-clipboard-data-fill"></i> Input Produk</a>
+										<a href="data-list.php" class="btn btn-success btn-lg"><i class="bi bi-card-list"></i> Lihat Daftar Produk</a>
+										<a href="data-search.php" class="btn btn-warning btn-lg"><i class="bi bi-search-heart-fill"></i> Cari Produk</a>
 									</div>
 
 								</div>

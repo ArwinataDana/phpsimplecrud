@@ -36,7 +36,7 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Input Mahasiswa</h3>
+								<h3 class="mb-0">Input Produk</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -54,7 +54,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Mahasiswa</h3>
+										<h3 class="card-title">Memasukan Produk</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -68,7 +68,7 @@ if(isset($_GET['status'])){
                                     <form action="proses/proses-input.php" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nim" class="form-label">Nomor Induk Mahasiswa (NIM)</label>
+                                                <label for="nim" class="form-label">Nama Brand</label>
                                                 <input type="number" class="form-control" id="nim" name="nim" placeholder="Masukkan NIM Mahasiswa" required>
                                             </div>
                                             <div class="mb-3">

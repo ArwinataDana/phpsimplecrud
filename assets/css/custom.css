@@ -1,1 +1,12 @@
 /* Taruh CSS Custom Disini */
+.bg-body-secondary {
+    background-color: #3d3d3d!important;
+}
+
+.nav-header {
+    color: #d4d4d4!important;
+}
+
+.brand-text fw-light{
+    color: #d4d4d4!important;
+} 

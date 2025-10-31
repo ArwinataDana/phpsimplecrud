@@ -38,7 +38,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Daftar Mahasiswa</h3>
+								<h3 class="mb-0">Daftar Produk</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
@@ -72,15 +72,10 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 											<thead>
 												<tr>
 													<th>No</th>
-													<th>NIM</th>
-													<th>Nama</th>
-													<th>Prodi</th>
-													<th>Provinsi</th>
-													<th>Alamat</th>
-													<th>Telp</th>
-													<th>Email</th>
-													<th class="text-center">Status</th>
-													<th class="text-center">Aksi</th>
+													<th>Nama Brand</th>
+													<th>Nama Produk</th>
+													<th>Jenis Produk</th>
+													<th>Deskripsi Produk</th>
 												</tr>
 											</thead>
 											<tbody>
