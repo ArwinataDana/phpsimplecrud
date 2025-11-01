@@ -31,12 +31,12 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Edit Provinsi</h3>
+								<h3 class="mb-0">Edit Tipe Device</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Edit Provinsi</li>
+									<li class="breadcrumb-item active" aria-current="page">Edit Tipe Device</li>
 								</ol>
 							</div>
 						</div>
@@ -49,7 +49,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Provinsi</h3>
+										<h3 class="card-title">Formulir Tipe Device</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -64,8 +64,8 @@ if(isset($_GET['status'])){
 									    <div class="card-body">
                                             <input type="hidden" name="id" value="<?php echo $dataProvinsi['id']; ?>">
 											<div class="mb-3">
-												<label for="nama" class="form-label">Nama Provinsi</label>
-												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Program Studi" value="<?php echo $dataProvinsi['nama']; ?>" required>
+												<label for="nama" class="form-label">Nama Tipe Device</label>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Tipe Device" value="<?php echo $dataProvinsi['nama']; ?>" required>
 											</div>
                                         </div>
 									    <div class="card-footer">

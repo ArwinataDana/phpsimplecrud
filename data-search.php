@@ -1,156 +1,173 @@
 <?php
-
 include_once 'config/class-mahasiswa.php';
 $mahasiswa = new Mahasiswa();
 $kataKunci = '';
-// Mengecek apakah parameter GET 'search' ada
-if(isset($_GET['search'])){
-	// Mengambil kata kunci pencarian dari parameter GET 'search'
-	$kataKunci = $_GET['search'];
-	// Memanggil method searchMahasiswa untuk mencari data mahasiswa berdasarkan kata kunci dan menyimpan hasil dalam variabel $cariMahasiswa
-	$cariMahasiswa = $mahasiswa->searchMahasiswa($kataKunci);
-} 
+
+// Mengecek apakah ada parameter GET 'search'
+if (isset($_GET['search'])) {
+    $kataKunci = $_GET['search'];
+    // Mencari data produk berdasarkan kata kunci
+    $cariMahasiswa = $mahasiswa->searchMahasiswa($kataKunci);
+}
 ?>
 <!doctype html>
 <html lang="en">
-	<head>
-		<?php include 'template/header.php'; ?>
-	</head>
+<head>
+    <?php include 'template/header.php'; ?>
+</head>
 
-	<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
+<body class="layout-fixed fixed-header fixed-footer sidebar-expand-lg sidebar-open bg-body-tertiary">
 
-		<div class="app-wrapper">
+<div class="app-wrapper">
 
-			<?php include 'template/navbar.php'; ?>
+    <?php include 'template/navbar.php'; ?>
+    <?php include 'template/sidebar.php'; ?>
 
-			<?php include 'template/sidebar.php'; ?>
+    <main class="app-main">
 
-			<main class="app-main">
+        <div class="app-content-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h3 class="mb-0">Pencarian Produk</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-end">
+                            <li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Cari Produk</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-				<div class="app-content-header">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-6">
-								<h3 class="mb-0">Cari Produk</h3>
-							</div>
-							<div class="col-sm-6">
-								<ol class="breadcrumb float-sm-end">
-									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Cari Produk</li>
-								</ol>
-							</div>
-						</div>
-					</div>
-				</div>
+        <div class="app-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
 
-				<div class="app-content">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-12">
-								<div class="card mb-3">
-									<div class="card-header">
-										<h3 class="card-title">Pencarian Produk</h3>
-										<div class="card-tools">
-											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
-												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-												<i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-											</button>
-											<button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
-												<i class="bi bi-x-lg"></i>
-											</button>
-										</div>
-									</div>
-									<div class="card-body">
-										<form action="data-search.php" method="GET">
-											<div class="mb-3">
-												<label for="search" class="form-label">Masukkan Nama Produk</label>
-												<input type="text" class="form-control" id="search" name="search" placeholder="Cari berdasarkan nama produk" value="<?php echo $kataKunci; ?>" required>
-											</div>
-											<button type="submit" class="btn btn-primary"><i class="bi bi-search-heart-fill"></i> Cari Produk</button>
-										</form>
-									</div>
-								</div>
-								<div class="card">
-									<div class="card-header">
-										<h3 class="card-title">Hasil Pencarian</h3>
-										<div class="card-tools">
-											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
-												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
-												<i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
-											</button>
-											<button type="button" class="btn btn-tool" data-lte-toggle="card-remove" title="Remove">
-												<i class="bi bi-x-lg"></i>
-											</button>
-										</div>
-									</div>
-									<div class="card-body">
-										<?php
-										// Mengecek apakah parameter GET 'search' ada
-										if(isset($_GET['search'])){
-											// Mengecek apakah ada data mahasiswa yang ditemukan
-											if(count($cariMahasiswa) > 0){
-												// Menampilkan tabel hasil pencarian
-												echo '<table class="table table-striped" role="table">
-													<thead>
-														<tr>
-															<th>No</th>
-															<th>Nama Produk</th>
-														</tr>
-													</thead>
-													<tbody>';
-													// Iterasi data mahasiswa yang ditemukan dan menampilkannya dalam tabel
-													foreach ($cariMahasiswa as $index => $mahasiswa){
-														// Mengubah status mahasiswa menjadi badge dengan warna yang sesuai
-														if($mahasiswa['status'] == 1){
-															$mahasiswa['status'] = '<span class="badge bg-success">Aktif</span>';
-														} elseif($mahasiswa['status'] == 2){
-															$mahasiswa['status'] = '<span class="badge bg-danger">Tidak Aktif</span>';
-														} elseif($mahasiswa['status'] == 3){
-															$mahasiswa['status'] = '<span class="badge bg-warning text-dark">Cuti</span>';
-														} elseif($mahasiswa['status'] == 4){
-															$mahasiswa['status'] = '<span class="badge bg-primary">Lulus</span>';
-														} 
-														// Menampilkan baris data mahasiswa dalam tabel
-														echo '<tr class="align-middle">
-															<td>'.($index + 1).'</td>
-															<td>'.$mahasiswa['nama'].'</td>
-															<td>'.$mahasiswa['deskripsi'].'</td>
-															<td class="text-center">'.$mahasiswa['status'].'</td>
-															<td class="text-center">
-																<button type="button" class="btn btn-sm btn-warning me-1" onclick="window.location.href=\'data-edit.php?id='.$mahasiswa['id'].'\'"><i class="bi bi-pencil-fill"></i> Edit</button>
-																<button type="button" class="btn btn-sm btn-danger" onclick="if(confirm(\'Yakin ingin menghapus data mahasiswa ini?\')){window.location.href=\'proses/proses-delete.php?id='.$mahasiswa['id'].'\'}"><i class="bi bi-trash-fill"></i> Hapus</button>
-															</td>
-														</tr>';
-													}
-												echo '</tbody>
-												</table>';
-											} else {
-												// Menampilkan pesan jika tidak ada data mahasiswa yang ditemukan
-												echo '<div class="alert alert-warning" role="alert">
-														Tidak ditemukan data produk yang sesuai dengan kata kunci "<strong>'.htmlspecialchars($_GET['search']).'</strong>".
-													  </div>';
-											}
-										} else {
-											// Menampilkan pesan jika form pencarian belum disubmit
-											echo '<div class="alert alert-info" role="alert">
-													Silakan masukkan kata kunci pencarian di atas untuk mencari data produk
-												  </div>';
-										}
-										?>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+                        <!-- Form Pencarian -->
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                <h3 class="card-title">Form Pencarian</h3>
+                                <div class="card-tools">
+                                    <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
+                                        <i data-lte-icon="expand" class="bi bi-plus-lg"></i>
+                                        <i data-lte-icon="collapse" class="bi bi-dash-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form action="data-search.php" method="GET" class="row g-3">
+                                    <div class="col-md-10">
+                                        <input type="text" class="form-control" id="search" name="search"
+                                               placeholder="Masukkan nama produk..." value="<?php echo htmlspecialchars($kataKunci ?? '', ENT_QUOTES); ?>" required>
+                                    </div>
+                                    <div class="col-md-2 d-grid">
+                                        <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Cari</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
 
-			</main>
+                        <!-- Hasil Pencarian -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">Hasil Pencarian Produk</h3>
+                            </div>
+                            <div class="card-body">
+                                <?php
+                                if (isset($_GET['search'])) {
+                                    if (!empty($cariMahasiswa) && count($cariMahasiswa) > 0) {
+                                        echo '<table class="table table-striped table-bordered text-center" role="table">
+                                                <thead class="table-dark">
+                                                    <tr>
+                                                        <th>No</th>
+                                                        <th>Nama Produk</th>
+                                                        <th>Jenis Brand</th>
+                                                        <th>Jenis Device</th>
+                                                        <th>Deskripsi</th>
+                                                        <th>Status</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>';
 
-			<?php include 'template/footer.php'; ?>
+                                        foreach ($cariMahasiswa as $index => $mhs) {
+                                            // Konversi status produk
+                                            $status = '';
+                                            switch ($mhs['status_produk'] ?? 0) {
+                                                case 1:
+                                                    $status = '<span class="badge bg-success">Aktif</span>';
+                                                    break;
+                                                case 2:
+                                                    $status = '<span class="badge bg-danger">Tidak Aktif</span>';
+                                                    break;
+                                                case 3:
+                                                    $status = '<span class="badge bg-warning text-dark">Cuti</span>';
+                                                    break;
+                                                case 4:
+                                                    $status = '<span class="badge bg-primary">Lulus</span>';
+                                                    break;
+                                                default:
+                                                    $status = '<span class="badge bg-secondary">Tidak Diketahui</span>';
+                                            }
 
-		</div>
-		
-		<?php include 'template/script.php'; ?>
+                                            // Hindari undefined index & nilai null
+                                            $nama_produk = htmlspecialchars($mhs['nama_produk'] ?? '', ENT_QUOTES);
+                                            $jenis_brand = htmlspecialchars($mhs['jenis_brand'] ?? '', ENT_QUOTES);
+                                            $jenis_device = htmlspecialchars($mhs['jenis_device'] ?? '', ENT_QUOTES);
+                                            $deskripsi = htmlspecialchars($mhs['deskripsi'] ?? '', ENT_QUOTES);
+                                            $id_produk = $mhs['id_produk'] ?? '';
 
-	</body>
+                                            echo '<tr>
+                                                    <td>' . ($index + 1) . '</td>
+                                                    <td>' . $nama_produk . '</td>
+                                                    <td>' . $jenis_brand . '</td>
+                                                    <td>' . $jenis_device . '</td>
+                                                    <td>' . $deskripsi . '</td>
+                                                    <td>' . $status . '</td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-sm btn-warning me-1"
+                                                            onclick="window.location.href=\'data-edit.php?id=' . $id_produk . '\'">
+                                                            <i class="bi bi-pencil-fill"></i> Edit
+                                                        </button>
+                                                        <button type="button" class="btn btn-sm btn-danger"
+                                                            onclick="if(confirm(\'Yakin ingin menghapus produk ini?\')){window.location.href=\'proses/proses-delete.php?id=' . $id_produk . '\'}">
+                                                            <i class="bi bi-trash-fill"></i> Hapus
+                                                        </button>
+                                                    </td>
+                                                </tr>';
+                                        }
+
+                                        echo '</tbody></table>';
+                                    } else {
+                                        echo '<div class="alert alert-warning text-center" role="alert">
+                                                Tidak ditemukan data produk dengan kata kunci 
+                                                "<strong>' . htmlspecialchars($kataKunci ?? '', ENT_QUOTES) . '</strong>".
+                                              </div>';
+                                    }
+                                } else {
+                                    echo '<div class="alert alert-info text-center" role="alert">
+                                            Silakan masukkan kata kunci produk untuk memulai pencarian.
+                                          </div>';
+                                }
+                                ?>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <?php include 'template/footer.php'; ?>
+
+</div>
+
+<?php include 'template/script.php'; ?>
+
+</body>
 </html>

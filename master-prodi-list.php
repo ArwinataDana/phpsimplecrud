@@ -37,12 +37,12 @@ $dataProdi = $master->getProdi();
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Data Program Studi</h3>
+								<h3 class="mb-0">Data Brand</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Master Prodi</li>
+									<li class="breadcrumb-item active" aria-current="page">Master Brand</li>
 								</ol>
 							</div>
 						</div>
@@ -55,7 +55,7 @@ $dataProdi = $master->getProdi();
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Daftar Program Studi</h3>
+										<h3 class="card-title">Daftar Brand Device</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -100,7 +100,7 @@ $dataProdi = $master->getProdi();
 										</table>
 									</div>
 									<div class="card-footer">
-										<button type="button" class="btn btn-primary" onclick="window.location.href='master-prodi-input.php'"><i class="bi bi-plus-lg"></i> Tambah Prodi</button>
+										<button type="button" class="btn btn-primary" onclick="window.location.href='master-prodi-input.php'"><i class="bi bi-plus-lg"></i> Tambah Brand</button>
 									</div>
 								</div>
 							</div>

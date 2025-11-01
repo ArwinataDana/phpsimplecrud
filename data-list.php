@@ -76,22 +76,32 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 													<th>Nama Produk</th>
 													<th>Jenis Produk</th>
 													<th>Deskripsi Produk</th>
+													<th>Status</th> <!-- ✅ Kolom status baru -->
 												</tr>
 											</thead>
 												<tbody>
 												<?php
 												if (count($dataMahasiswa) == 0) {
 													echo '<tr class="align-middle">
-														<td colspan="5" class="text-center">Tidak ada data produk.</td>
+														<td colspan="6" class="text-center">Tidak ada data produk.</td>
 													</tr>';
 												} else {
 													foreach ($dataMahasiswa as $index => $produk) {
+
+														// ✅ Tambahan kecil untuk menampilkan status dengan badge
+														if($produk['status_produk'] == 1){
+															$statusLabel = '<span class="badge bg-success">Aktif</span>';
+														} else {
+															$statusLabel = '<span class="badge bg-danger">Tidak Aktif</span>';
+														}
+
 														echo '<tr class="align-middle">
 															<td>'.($index + 1).'</td>
 															<td>'.$produk['nama_brand'].'</td>
 															<td>'.$produk['nama_produk'].'</td>
 															<td>'.$produk['jenis_device'].'</td>
 															<td>'.$produk['deskripsi'].'</td>
+															<td class="text-center">'.$statusLabel.'</td> <!-- ✅ tampilkan status -->
 														</tr>';
 													}
 												}
@@ -101,7 +111,7 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 										</table>
 									</div>
 									<div class="card-footer">
-										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Mahasiswa</button>
+										<button type="button" class="btn btn-primary" onclick="window.location.href='data-input.php'"><i class="bi bi-plus-lg"></i> Tambah Produk</button>
 									</div>
 								</div>
 							</div>

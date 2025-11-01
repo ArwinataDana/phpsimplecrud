@@ -65,18 +65,17 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
-                                    <form action="proses/proses-input.php" method="POST">
-									    <div class="card-body">
+                                   <form action="proses/proses-input.php" method="POST">
+                                        <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nim" class="form-label">Nama Produk</label>
-                                                <input type="text" class="form-control" id="nim" name="nim" placeholder="Masukkan Nama Produk" required>
+                                                <label for="nama_produk" class="form-label">Nama Produk</label>
+                                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" placeholder="Masukkan Nama Produk" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="prodi" class="form-label">Jenis Brand</label>
-                                                <select class="form-select" id="prodi" name="prodi" required>
+                                                <label for="nama_brand" class="form-label">Jenis Brand</label>
+                                                <select class="form-select" id="nama_brand" name="nama_brand" required>
                                                     <option value="" selected disabled>Pilih Brand</option>
                                                     <?php 
-                                                    // Iterasi daftar program studi dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($prodiList as $prodi){
                                                         echo '<option value="'.$prodi['id'].'">'.$prodi['nama'].'</option>';
                                                     }
@@ -84,11 +83,10 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="provinsi" class="form-label">Tipe Device</label>
-                                                <select class="form-select" id="provinsi" name="device" required>
+                                                <label for="jenis_device" class="form-label">Tipe Device</label>
+                                                <select class="form-select" id="jenis_device" name="jenis_device" required>
                                                     <option value="" selected disabled>Pilih Device</option>
                                                     <?php
-                                                    // Iterasi daftar provinsi dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($provinsiList as $provinsi){
                                                         echo '<option value="'.$provinsi['id'].'">'.$provinsi['nama'].'</option>';
                                                     }
@@ -96,15 +94,14 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="email" class="form-label">Deskripsi</label>
+                                                <label for="deskripsi" class="form-label">Deskripsi</label>
                                                 <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Masukkan Deskripsi Produk" required>
                                             </div>
                                             <div class="mb-3">
-                                                <label for="status" class="form-label">Status</label>
-                                                <select class="form-select" id="status" name="status" required>
+                                                <label for="status_produk" class="form-label">Status</label>
+                                                <select class="form-select" id="status_produk" name="status_produk" required>
                                                     <option value="" selected disabled>Pilih Status</option>
                                                     <?php 
-                                                    // Iterasi daftar status mahasiswa dan menampilkannya sebagai opsi dalam dropdown
                                                     foreach ($statusList as $status){
                                                         echo '<option value="'.$status['id'].'">'.$status['nama'].'</option>';
                                                     }
@@ -112,12 +109,13 @@ if(isset($_GET['status'])){
                                                 </select>
                                             </div>
                                         </div>
-									    <div class="card-footer">
+                                        <div class="card-footer">
                                             <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='data-list.php'">Batal</button>
                                             <button type="reset" class="btn btn-secondary me-2 float-start">Reset</button>
                                             <button type="submit" class="btn btn-primary float-end">Submit</button>
                                         </div>
                                     </form>
+
 								</div>
 							</div>
 						</div>

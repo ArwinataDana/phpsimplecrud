@@ -7,21 +7,19 @@ include '../config/class-mahasiswa.php';
 $mahasiswa = new Mahasiswa();
 
 // Mengambil data mahasiswa dari form input menggunakan metode POST dan menyimpannya dalam array
-$produk[] = [
-    'id' => $row['id_mhs'],
-    'nama_brand' => $row['nama_brand'],
-    'nama_produk' => $row['nama_produk'],
-    'jenis_device' => $row['jenis_device'],
-    'deskripsi' => $row['deskripsi'],
-    'status_produk' => $row['status_produk']
+$dataMahasiswa = [
+    'nama_brand'    => isset($_POST['nama_brand']) ? $_POST['nama_brand'] : '',
+    'nama_produk'   => isset($_POST['nama_produk']) ? $_POST['nama_produk'] : '',
+    'jenis_device'  => isset($_POST['jenis_device']) ? $_POST['jenis_device'] : '',
+    'deskripsi'     => isset($_POST['deskripsi']) ? $_POST['deskripsi'] : '',
+    'status_produk' => isset($_POST['status_produk']) ? $_POST['status_produk'] : ''
 ];
-
 
 // Memanggil method inputMahasiswa untuk memasukkan data mahasiswa dengan parameter array $dataMahasiswa
 $input = $mahasiswa->inputMahasiswa($dataMahasiswa);
 
 // Mengecek apakah proses input berhasil atau tidak - true/false
-if($input){
+if ($input) {
     // Jika berhasil, redirect ke halaman data-list.php dengan status inputsuccess
     header("Location: ../data-list.php?status=inputsuccess");
 } else {
@@ -29,4 +27,5 @@ if($input){
     header("Location: ../data-input.php?status=failed");
 }
 
+exit; // disarankan untuk menghentikan script setelah redirect
 ?>

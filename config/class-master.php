@@ -49,7 +49,7 @@ class MasterData extends Database {
     public function inputProdi($data){
         $kodeProdi = $data['kode'];
         $namaProdi = $data['nama'];
-        $query = "INSERT INTO tb_prodi (kode_brand, nama_brand) VALUES (?, ?)";
+        $query = "INSERT INTO tb_prodi (kode_brand, jenis_brand) VALUES (?, ?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -60,9 +60,9 @@ class MasterData extends Database {
         return $result;
     }
 
-    // Method untuk mendapatkan data program studi berdasarkan kode
+    // ✅ Method untuk mendapatkan data program studi berdasarkan kode
     public function getUpdateProdi($id){
-        $query = "SELECT * FROM tb_prodi WHERE kode_prodi = ?";
+        $query = "SELECT * FROM tb_prodi WHERE kode_brand = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -74,19 +74,19 @@ class MasterData extends Database {
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $prodi = [
-                'id' => $row['kode_prodi'],
-                'nama' => $row['nama_prodi']
+                'id' => $row['kode_brand'],
+                'nama' => $row['jenis_brand']
             ];
         }
         $stmt->close();
         return $prodi;
     }
 
-    // Method untuk mengedit data program studi
+    // ✅ Method untuk mengedit data program studi
     public function updateProdi($data){
         $kodeProdi = $data['kode'];
         $namaProdi = $data['nama'];
-        $query = "UPDATE tb_prodi SET nama_prodi = ? WHERE kode_prodi = ?";
+        $query = "UPDATE tb_prodi SET jenis_brand = ? WHERE kode_brand = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -97,9 +97,9 @@ class MasterData extends Database {
         return $result;
     }
 
-    // Method untuk menghapus data program studi
+    // ✅ Method untuk menghapus data program studi
     public function deleteProdi($id){
-        $query = "DELETE FROM tb_prodi WHERE kode_prodi = ?";
+        $query = "DELETE FROM tb_prodi WHERE kode_brand = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -113,7 +113,7 @@ class MasterData extends Database {
     // Method untuk input data provinsi
     public function inputProvinsi($data){
         $namaProvinsi = $data['nama'];
-        $query = "INSERT INTO tb_provinsi (nama_provinsi) VALUES (?)";
+        $query = "INSERT INTO tb_provinsi (nama_device) VALUES (?)";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -126,7 +126,7 @@ class MasterData extends Database {
 
     // Method untuk mendapatkan data provinsi berdasarkan id
     public function getUpdateProvinsi($id){
-        $query = "SELECT * FROM tb_provinsi WHERE id_provinsi = ?";
+        $query = "SELECT * FROM tb_provinsi WHERE id_device = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -138,8 +138,8 @@ class MasterData extends Database {
         if($result->num_rows > 0){
             $row = $result->fetch_assoc();
             $provinsi = [
-                'id' => $row['id_provinsi'],
-                'nama' => $row['nama_provinsi']
+                'id' => $row['id_device'],
+                'nama' => $row['nama_device']
             ];
         }
         $stmt->close();
@@ -150,7 +150,7 @@ class MasterData extends Database {
     public function updateProvinsi($data){
         $idProvinsi = $data['id'];
         $namaProvinsi = $data['nama'];
-        $query = "UPDATE tb_provinsi SET nama_provinsi = ? WHERE id_provinsi = ?";
+        $query = "UPDATE tb_provinsi SET nama_device = ? WHERE id_device = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
@@ -163,7 +163,7 @@ class MasterData extends Database {
 
     // Method untuk menghapus data provinsi
     public function deleteProvinsi($id){
-        $query = "DELETE FROM tb_provinsi WHERE id_provinsi = ?";
+        $query = "DELETE FROM tb_provinsi WHERE id_device = ?";
         $stmt = $this->conn->prepare($query);
         if(!$stmt){
             return false;
