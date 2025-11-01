@@ -6,57 +6,53 @@ include_once 'db-config.php';
 class Mahasiswa extends Database {
 
     // Method untuk input data mahasiswa
-    public function 
-    inputMahasiswa($data){
-        // Mengambil data dari parameter $data
-        $nama     = $data['nama'];
-        $deskripsi     = $data['deskripsi'];
+    public function inputMahasiswa($data){
+    $nama_produk    = $data['nama_produk'];
+    $nama_brand     = $data['nama_brand'];
+    $jenis_device   = $data['jenis_device'];
+    $deskripsi      = $data['deskripsi'];
+    $status_produk  = $data['status_produk'];
 
-        // Menyiapkan query SQL untuk insert data menggunakan prepared statement
-        $query = "INSERT INTO tb_mahasiswa (nama_brand, deskripsi) VALUES (?, ?)";
-        $stmt = $this->conn->prepare($query);
-        // Mengecek apakah statement berhasil disiapkan
-        if(!$stmt){
-            return false;
-        }
-        // Memasukkan parameter ke statement
-        $stmt->bind_param("ss",$nama, $deskripsi);
-        $result = $stmt->execute();
-        $stmt->close();
-        // Mengembalikan hasil eksekusi query
-        return $result;
+    $query = "INSERT INTO tb_mahasiswa (nama_produk, nama_brand, jenis_device, deskripsi, status_produk)
+              VALUES (?, ?, ?, ?, ?)";
+    
+    $stmt = $this->conn->prepare($query);
+    if(!$stmt){
+        die("Prepare gagal: " . $this->conn->error);
     }
+
+    $stmt->bind_param("sssss", $nama_produk, $nama_brand, $jenis_device, $deskripsi, $status_produk);
+
+    $result = $stmt->execute();
+    if(!$result){
+        die("Eksekusi gagal: " . $stmt->error);
+    }
+
+    $stmt->close();
+    return $result;
+}
+
 
     // Method untuk mengambil semua data mahasiswa
     public function getAllMahasiswa(){
-        // Menyiapkan query SQL untuk mengambil data mahasiswa beserta prodi dan provinsi
-        $query = "SELECT nama_produk, nama_brand, jenis_device, deskripsi, status_produk
-                  FROM tb_mahasiswa
-                  JOIN tb_prodi ON jenis_brand = kode_brand
-                  JOIN tb_provinsi ON nama_device = id_device";
+    $query = "SELECT id_mhs, nama_brand, nama_produk, jenis_device, deskripsi, status_produk FROM tb_mahasiswa";
         $result = $this->conn->query($query);
-        // Menyiapkan array kosong untuk menyimpan data mahasiswa
-        $mahasiswa = [];
-        // Mengecek apakah ada data yang ditemukan
-        if($result->num_rows > 0){
-            // Mengambil setiap baris data dan memasukkannya ke dalam array
+
+        $produk = [];
+        if($result && $result->num_rows > 0){
             while($row = $result->fetch_assoc()) {
-                $mahasiswa[] = [
-                    'id' => $row['id_mhs'],
-                    'nim' => $row['nim_mhs'],
-                    'nama' => $row['nama_mhs'],
-                    'prodi' => $row['nama_prodi'],
-                    'provinsi' => $row['nama_provinsi'],
-                    'alamat' => $row['alamat'],
-                    'email' => $row['email'],
-                    'telp' => $row['telp'],
-                    'status' => $row['status_mhs']
+                $produk[] = [
+                    'nama_brand' => $row['nama_brand'],
+                    'nama_produk' => $row['nama_produk'],
+                    'jenis_device' => $row['jenis_device'],
+                    'deskripsi' => $row['deskripsi'],
+                    'status_produk' => $row['status_produk']
                 ];
             }
         }
-        // Mengembalikan array data mahasiswa
-        return $mahasiswa;
+        return $produk;
     }
+
 
     // Method untuk mengambil data mahasiswa berdasarkan ID
     public function getUpdateMahasiswa($id){
