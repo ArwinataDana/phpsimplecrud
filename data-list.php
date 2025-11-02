@@ -6,13 +6,13 @@ $mahasiswa = new Mahasiswa();
 if(isset($_GET['status'])){
 	// Mengecek nilai parameter GET 'status' dan menampilkan alert yang sesuai menggunakan JavaScript
 	if($_GET['status'] == 'inputsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil ditambahkan.');</script>";
+		echo "<script>alert('Data produk berhasil ditambahkan.');</script>";
 	} else if($_GET['status'] == 'editsuccess'){
-		echo "<script>alert('Data mahasiswa berhasil diubah.');</script>";
+		echo "<script>alert('Data produk berhasil diubah.');</script>";
 	} else if($_GET['status'] == 'deletesuccess'){
-		echo "<script>alert('Data mahasiswa berhasil dihapus.');</script>";
+		echo "<script>alert('Data produk berhasil dihapus.');</script>";
 	} else if($_GET['status'] == 'deletefailed'){
-		echo "<script>alert('Gagal menghapus data mahasiswa. Silakan coba lagi.');</script>";
+		echo "<script>alert('Gagal menghapus data produk. Silakan coba lagi.');</script>";
 	}
 }
 $dataMahasiswa = $mahasiswa->getAllMahasiswa();
@@ -76,37 +76,37 @@ $dataMahasiswa = $mahasiswa->getAllMahasiswa();
 													<th>Nama Produk</th>
 													<th>Jenis Produk</th>
 													<th>Deskripsi Produk</th>
-													<th>Status</th> <!-- ✅ Kolom status baru -->
+													<th class="text-center" style="width: 120px;">Status</th>
 												</tr>
 											</thead>
-												<tbody>
-												<?php
-												if (count($dataMahasiswa) == 0) {
-													echo '<tr class="align-middle">
-														<td colspan="6" class="text-center">Tidak ada data produk.</td>
-													</tr>';
-												} else {
-													foreach ($dataMahasiswa as $index => $produk) {
+											<tbody>
+											<?php
+											if (count($dataMahasiswa) == 0) {
+												echo '<tr class="align-top">
+													<td colspan="6" class="text-center">Tidak ada data produk.</td>
+												</tr>';
+											} else {
+												foreach ($dataMahasiswa as $index => $produk) {
 
-														// ✅ Tambahan kecil untuk menampilkan status dengan badge
-														if($produk['status_produk'] == 1){
-															$statusLabel = '<span class="badge bg-success">Aktif</span>';
-														} else {
-															$statusLabel = '<span class="badge bg-danger">Tidak Aktif</span>';
-														}
-
-														echo '<tr class="align-middle">
-															<td>'.($index + 1).'</td>
-															<td>'.$produk['nama_brand'].'</td>
-															<td>'.$produk['nama_produk'].'</td>
-															<td>'.$produk['jenis_device'].'</td>
-															<td>'.$produk['deskripsi'].'</td>
-															<td class="text-center">'.$statusLabel.'</td> <!-- ✅ tampilkan status -->
-														</tr>';
+													// Badge status
+													if ($produk['status_produk'] == 1) {
+														$statusLabel = '<span class="badge bg-success">Aktif</span>';
+													} else {
+														$statusLabel = '<span class="badge bg-danger">Tidak Aktif</span>';
 													}
+
+													echo '<tr class="align-top">
+														<td>'.($index + 1).'</td>
+														<td>'.$produk['nama_brand'].'</td>
+														<td>'.$produk['nama_produk'].'</td>
+														<td>'.$produk['jenis_device'].'</td>
+														<td class="text-break text-wrap" style="max-width:480px; white-space:normal; word-wrap:break-word; word-break:break-word; padding:8px 12px;">'.$produk['deskripsi'].'</td>
+														<td class="text-center align-middle" style="vertical-align: middle;">'.$statusLabel.'</td>
+													</tr>';
 												}
-												?>
-												</tbody>
+											}
+											?>
+											</tbody>
 
 										</table>
 									</div>

@@ -5,27 +5,27 @@ include_once 'db-config.php';
 
 class Mahasiswa extends Database
 {
-
-    // Method untuk input data produk
+    // 🟢 Input produk
     public function inputMahasiswa($data)
     {
         $nama_produk    = $data['nama_produk'];
-        $nama_brand     = $data['nama_brand'];
-        $jenis_device   = $data['jenis_device'];
+        $nama_brand     = $data['nama_brand']; // kode brand (dari tb_prodi)
+        $jenis_device   = $data['jenis_device']; // id_device dari tb_device
         $deskripsi      = $data['deskripsi'];
         $status_produk  = $data['status_produk'];
 
-        $query = "INSERT INTO tb_mahasiswa (nama_produk, nama_brand, jenis_device, deskripsi, status_produk)
-              VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO tb_mahasiswa 
+                    (nama_produk, nama_brand, jenis_device, deskripsi, status_produk)
+                  VALUES (?, ?, ?, ?, ?)";
 
         $stmt = $this->conn->prepare($query);
         if (!$stmt) {
             die("Prepare gagal: " . $this->conn->error);
         }
 
-        $stmt->bind_param("ssssi", $nama_produk, $nama_brand, $jenis_device, $deskripsi, $status_produk);
-
+        $stmt->bind_param("ssisi", $nama_produk, $nama_brand, $jenis_device, $deskripsi, $status_produk);
         $result = $stmt->execute();
+
         if (!$result) {
             die("Eksekusi gagal: " . $stmt->error);
         }
@@ -34,58 +34,49 @@ class Mahasiswa extends Database
         return $result;
     }
 
-
-    // Method untuk mengambil semua data produk
+    // 🟢 Ambil semua data produk (JOIN ke tb_prodi dan tb_device)
     public function getAllMahasiswa()
     {
-        $query = "SELECT id_produk, nama_brand, nama_produk, jenis_device, deskripsi, status_produk FROM tb_mahasiswa";
-        $result = $this->conn->query($query);
+        $query = "SELECT 
+                    p.id_produk,
+                    pr.jenis_brand AS nama_brand,
+                    p.nama_produk,
+                    d.nama_device AS jenis_device,
+                    p.deskripsi,
+                    p.status_produk
+                  FROM tb_mahasiswa p
+                  LEFT JOIN tb_prodi pr ON p.nama_brand = pr.kode_brand
+                  LEFT JOIN tb_device d ON p.jenis_device = d.id_device
+                  ORDER BY p.id_produk ASC";
 
+        $result = $this->conn->query($query);
         $produk = [];
+
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $produk[] = [
-                    'id_produk' => $row['id_produk'],
-                    'nama_brand' => $row['nama_brand'],
-                    'nama_produk' => $row['nama_produk'],
-                    'jenis_device' => $row['jenis_device'],
-                    'deskripsi' => $row['deskripsi'],
-                    'status_produk' => $row['status_produk']
-                ];
+                $produk[] = $row;
             }
         }
         return $produk;
     }
 
-
-    // Method untuk mengambil data produk berdasarkan ID
+    // 🟢 Ambil data berdasarkan ID
     public function getUpdateMahasiswa($id)
     {
         $query = "SELECT * FROM tb_mahasiswa WHERE id_produk = ?";
         $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            return false;
-        }
+        if (!$stmt) return false;
+
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $result = $stmt->get_result();
-        $data = false;
-        if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $data = [
-                'id_produk' => $row['id_produk'],
-                'nama_produk' => $row['nama_produk'],
-                'nama_brand' => $row['nama_brand'],
-                'jenis_device' => $row['jenis_device'],
-                'deskripsi' => $row['deskripsi'],
-                'status_produk' => $row['status_produk']
-            ];
-        }
+        $data = $result->fetch_assoc();
+
         $stmt->close();
-        return $data;
+        return $data ?: false;
     }
 
-    // Method untuk mengedit data produk
+    // 🟢 Edit data produk
     public function editMahasiswa($data)
     {
         $id_produk     = $data['id_produk'];
@@ -99,58 +90,60 @@ class Mahasiswa extends Database
                   SET nama_produk = ?, nama_brand = ?, jenis_device = ?, deskripsi = ?, status_produk = ?
                   WHERE id_produk = ?";
         $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            return false;
-        }
+        if (!$stmt) return false;
 
-        $stmt->bind_param("ssssii", $nama_produk, $nama_brand, $jenis_device, $deskripsi, $status_produk, $id_produk);
+        $stmt->bind_param("ssissi", $nama_produk, $nama_brand, $jenis_device, $deskripsi, $status_produk, $id_produk);
         $result = $stmt->execute();
+
         $stmt->close();
         return $result;
     }
 
-    // Method untuk menghapus data produk
+    // 🟢 Hapus produk
     public function deleteMahasiswa($id)
     {
         $query = "DELETE FROM tb_mahasiswa WHERE id_produk = ?";
         $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            return false;
-        }
+        if (!$stmt) return false;
+
         $stmt->bind_param("i", $id);
         $result = $stmt->execute();
         $stmt->close();
+
         return $result;
     }
 
-    // Method untuk mencari data produk berdasarkan kata kunci
+    // 🟢 Pencarian produk
     public function searchMahasiswa($kataKunci)
     {
         $likeQuery = "%" . $kataKunci . "%";
-        $query = "SELECT id_produk, nama_produk, nama_brand, jenis_device, deskripsi, status_produk
-                  FROM tb_mahasiswa
-                  WHERE nama_produk LIKE ? OR nama_brand LIKE ? OR jenis_device LIKE ?";
+        $query = "SELECT 
+                    p.id_produk,
+                    pr.jenis_brand AS nama_brand,
+                    p.nama_produk,
+                    d.nama_device AS jenis_device,
+                    p.deskripsi,
+                    p.status_produk
+                  FROM tb_mahasiswa p
+                  LEFT JOIN tb_prodi pr ON p.nama_brand = pr.kode_brand
+                  LEFT JOIN tb_device d ON p.jenis_device = d.id_device
+                  WHERE p.nama_produk LIKE ? 
+                     OR pr.jenis_brand LIKE ? 
+                     OR d.nama_device LIKE ?
+                  ORDER BY p.id_produk ASC";
+
         $stmt = $this->conn->prepare($query);
-        if (!$stmt) {
-            return [];
-        }
+        if (!$stmt) return [];
+
         $stmt->bind_param("sss", $likeQuery, $likeQuery, $likeQuery);
         $stmt->execute();
         $result = $stmt->get_result();
 
         $produk = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $produk[] = [
-                    'id_produk' => $row['id_produk'],
-                    'nama_produk' => $row['nama_produk'],
-                    'nama_brand' => $row['nama_brand'],
-                    'jenis_device' => $row['jenis_device'],
-                    'deskripsi' => $row['deskripsi'],
-                    'status_produk' => $row['status_produk']
-                ];
-            }
+        while ($row = $result->fetch_assoc()) {
+            $produk[] = $row;
         }
+
         $stmt->close();
         return $produk;
     }

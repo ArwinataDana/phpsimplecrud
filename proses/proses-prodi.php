@@ -4,48 +4,54 @@
 include '../config/class-master.php';
 // Membuat objek dari class MasterData
 $master = new MasterData();
+
 // Mengecek aksi yang dilakukan berdasarkan parameter GET 'aksi'
-if($_GET['aksi'] == 'inputprodi'){
-    // Mengambil data prodi dari form input menggunakan metode POST dan menyimpannya dalam array
+if ($_GET['aksi'] == 'inputprodi') {
+    // Mengambil data brand dari form input menggunakan metode POST
     $dataProdi = [
-        'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
+        'kode_brand'  => isset($_POST['kode_brand']) ? $_POST['kode_brand'] : null,   // sebelumnya 'kode'
+        'jenis_brand' => isset($_POST['jenis_brand']) ? $_POST['jenis_brand'] : null  // sebelumnya 'nama'
     ];
-    // Memanggil method inputProdi untuk memasukkan data prodi dengan parameter array $dataProdi
+
+    // Memanggil method inputProdi untuk memasukkan data brand
     $input = $master->inputProdi($dataProdi);
-    if($input){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status inputsuccess
+    if ($input) {
+        // Jika berhasil
         header("Location: ../master-prodi-list.php?status=inputsuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-input.php dengan status failed
+        // Jika gagal
         header("Location: ../master-prodi-input.php?status=failed");
     }
-} elseif($_GET['aksi'] == 'updateprodi'){
-    // Mengambil data prodi dari form edit menggunakan metode POST dan menyimpannya dalam array
+
+} elseif ($_GET['aksi'] == 'updateprodi') {
+    // Mengambil data brand dari form edit menggunakan metode POST
     $dataProdi = [
-        'id' => $_POST['id'],
-        'kode' => $_POST['kode'],
-        'nama' => $_POST['nama']
+        'id_brand'    => isset($_POST['id_brand']) ? $_POST['id_brand'] : null,        // sebelumnya 'id'
+        'kode_brand'  => isset($_POST['kode_brand']) ? $_POST['kode_brand'] : null,    // sebelumnya 'kode'
+        'jenis_brand' => isset($_POST['jenis_brand']) ? $_POST['jenis_brand'] : null   // sebelumnya 'nama'
     ];
-    // Memanggil method updateProdi untuk mengupdate data prodi dengan parameter array $dataProdi
+
+    // Memanggil method updateProdi untuk mengupdate data brand
     $update = $master->updateProdi($dataProdi);
-    if($update){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status editsuccess
+    if ($update) {
+        // Jika berhasil
         header("Location: ../master-prodi-list.php?status=editsuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-edit.php dengan status failed dan membawa id prodi
-        header("Location: ../master-prodi-edit.php?id=".$dataProdi['id']."&status=failed");
+        // Jika gagal
+        header("Location: ../master-prodi-edit.php?id=" . $dataProdi['id_brand'] . "&status=failed");
     }
-} elseif($_GET['aksi'] == 'deleteprodi'){
-    // Mengambil id prodi dari parameter GET
-    $id = $_GET['id'];
-    // Memanggil method deleteProdi untuk menghapus data prodi berdasarkan id
+
+} elseif ($_GET['aksi'] == 'deleteprodi') {
+    // Mengambil id brand dari parameter GET
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+    // Memanggil method deleteProdi untuk menghapus data brand berdasarkan id
     $delete = $master->deleteProdi($id);
-    if($delete){
-        // Jika berhasil, redirect ke halaman master-prodi-list.php dengan status deletesuccess
+    if ($delete) {
+        // Jika berhasil
         header("Location: ../master-prodi-list.php?status=deletesuccess");
     } else {
-        // Jika gagal, redirect ke halaman master-prodi-list.php dengan status deletefailed
+        // Jika gagal
         header("Location: ../master-prodi-list.php?status=deletefailed");
     }
 }

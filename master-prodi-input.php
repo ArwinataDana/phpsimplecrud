@@ -28,12 +28,12 @@ if(isset($_GET['status'])){
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-sm-6">
-								<h3 class="mb-0">Input Device</h3>
+								<h3 class="mb-0">Input Brand</h3>
 							</div>
 							<div class="col-sm-6">
 								<ol class="breadcrumb float-sm-end">
 									<li class="breadcrumb-item"><a href="index.php">Beranda</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Input Device</li>
+									<li class="breadcrumb-item active" aria-current="page">Input Brand</li>
 								</ol>
 							</div>
 						</div>
@@ -46,7 +46,7 @@ if(isset($_GET['status'])){
 							<div class="col-12">
 								<div class="card">
 									<div class="card-header">
-										<h3 class="card-title">Formulir Device Vape</h3>
+										<h3 class="card-title">Formulir Brand Vape</h3>
 										<div class="card-tools">
 											<button type="button" class="btn btn-tool" data-lte-toggle="card-collapse" title="Collapse">
 												<i data-lte-icon="expand" class="bi bi-plus-lg"></i>
@@ -57,23 +57,31 @@ if(isset($_GET['status'])){
 											</button>
 										</div>
 									</div>
+                                    
+                                    <!-- 🧩 FORM MULAI -->
                                     <form action="proses/proses-prodi.php?aksi=inputprodi" method="POST">
 									    <div class="card-body">
                                             <div class="mb-3">
-                                                <label for="nama" class="form-label">Kode Device</label>
-                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Device" required>
+                                                <label for="kode" class="form-label">Kode Brand</label>
+                                                <input type="text" class="form-control" id="kode" name="kode" placeholder="Masukkan Kode Brand" required>
                                             </div>
 											<div class="mb-3">
-												<label for="nama" class="form-label">Nama Device</label>
-												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Device" required>
+												<label for="nama" class="form-label">Nama Brand</label>
+												<input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama Brand" required>
 											</div>
+
+                                            <!-- 🆕 Tambahan field tersembunyi -->
+                                            <input type="hidden" name="kode_brand" value="" id="hidden_kode_brand">
+                                            <input type="hidden" name="jenis_brand" value="" id="hidden_jenis_brand">
                                         </div>
+
 									    <div class="card-footer">
                                             <button type="button" class="btn btn-danger me-2 float-start" onclick="window.location.href='master-prodi-list.php'">Batal</button>
                                             <button type="reset" class="btn btn-secondary me-2 float-start">Reset</button>
                                             <button type="submit" class="btn btn-primary float-end">Submit</button>
                                         </div>
                                     </form>
+                                    <!-- 🧩 FORM SELESAI -->
 								</div>
 							</div>
 						</div>
@@ -87,6 +95,14 @@ if(isset($_GET['status'])){
 		</div>
 		
 		<?php include 'template/script.php'; ?>
+
+        <!-- 🧠 Script untuk menyalin nilai dari form utama ke field tersembunyi -->
+        <script>
+        document.querySelector('form').addEventListener('submit', function() {
+            document.getElementById('hidden_kode_brand').value = document.getElementById('kode').value;
+            document.getElementById('hidden_jenis_brand').value = document.getElementById('nama').value;
+        });
+        </script>
 
 	</body>
 </html>

@@ -80,7 +80,7 @@ if(isset($_GET['status'])){
                                             <div class="mb-3">
                                                 <label for="jenis_brand" class="form-label">Jenis Brand</label>
                                                 <select class="form-select" id="jenis_brand" name="jenis_brand" required>
-                                                    <option value="" selected disabled>Pilih Brand</option>
+                                                    <option value="" disabled>Pilih Brand</option>
                                                     <?php 
                                                     foreach ($prodiList as $prodi){
                                                         $selectedBrand = ($dataMahasiswa['jenis_brand'] == $prodi['id']) ? 'selected' : '';
@@ -93,7 +93,7 @@ if(isset($_GET['status'])){
                                             <div class="mb-3">
                                                 <label for="jenis_device" class="form-label">Tipe Device</label>
                                                 <select class="form-select" id="jenis_device" name="jenis_device" required>
-                                                    <option value="" selected disabled>Pilih Device</option>
+                                                    <option value="" disabled>Pilih Device</option>
                                                     <?php
                                                     foreach ($provinsiList as $provinsi){
                                                         $selectedDevice = ($dataMahasiswa['jenis_device'] == $provinsi['id']) ? 'selected' : '';
@@ -111,7 +111,7 @@ if(isset($_GET['status'])){
                                             <div class="mb-3">
                                                 <label for="status_produk" class="form-label">Status Produk</label>
                                                 <select class="form-select" id="status_produk" name="status_produk" required>
-                                                    <option value="" selected disabled>Pilih Status</option>
+                                                    <option value="" disabled>Pilih Status</option>
                                                     <?php 
                                                     foreach ($statusList as $status){
                                                         $selectedStatus = ($dataMahasiswa['status_produk'] == $status['id']) ? 'selected' : '';

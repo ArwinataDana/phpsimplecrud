@@ -1,30 +1,24 @@
 <?php
-
-// Memasukkan file class-mahasiswa.php untuk mengakses class Mahasiswa
 include_once '../config/class-mahasiswa.php';
-// Membuat objek dari class Mahasiswa
 $mahasiswa = new Mahasiswa();
-// Mengambil data mahasiswa dari form edit menggunakan metode POST dan menyimpannya dalam array
+
+// Ambil data dari form edit produk
 $dataMahasiswa = [
-    'id' => $_POST['id'],
-    'nim' => $_POST['nim'],
-    'nama' => $_POST['nama'],
-    'prodi' => $_POST['prodi'],
-    'alamat' => $_POST['alamat'],
-    'provinsi' => $_POST['provinsi'],
-    'email' => $_POST['email'],
-    'telp' => $_POST['telp'],
-    'status' => $_POST['status']
+    'id_produk'     => $_POST['id_produk'], // ✅ gunakan nama 'id_produk' agar konsisten
+    'nama_produk'   => $_POST['nama_produk'],
+    'nama_brand'    => $_POST['jenis_brand'], // ✅ sesuaikan dengan nama kolom di class
+    'jenis_device'  => $_POST['jenis_device'],
+    'deskripsi'     => $_POST['deskripsi'],
+    'status_produk' => $_POST['status_produk']
 ];
-// Memanggil method editMahasiswa untuk mengupdate data mahasiswa dengan parameter array $dataMahasiswa
+
 $edit = $mahasiswa->editMahasiswa($dataMahasiswa);
-// Mengecek apakah proses edit berhasil atau tidak - true/false
-if($edit){
-    // Jika berhasil, redirect ke halaman data-list.php dengan status editsuccess
+
+// Redirect sesuai hasil edit
+if ($edit) {
     header("Location: ../data-list.php?status=editsuccess");
 } else {
-    // Jika gagal, redirect ke halaman data-edit.php dengan status failed dan membawa id mahasiswa
-    header("Location: ../data-edit.php?id=".$dataMahasiswa['id']."&status=failed");
+    header("Location: ../data-edit.php?id=" . $dataMahasiswa['id_produk'] . "&status=failed");
 }
-
+exit();
 ?>

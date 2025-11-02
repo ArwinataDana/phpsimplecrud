@@ -80,19 +80,18 @@ if (isset($_GET['search'])) {
                                 if (isset($_GET['search'])) {
                                     if (!empty($cariMahasiswa) && count($cariMahasiswa) > 0) {
                                         echo '<table class="table table-striped table-bordered text-center" role="table">
-                                                <thead class="table-dark">
-                                                    <tr>
-                                                        <th>No</th>
-                                                        <th>Nama Produk</th>
-                                                        <th>Jenis Brand</th>
-                                                        <th>Jenis Device</th>
-                                                        <th>Deskripsi</th>
-                                                        <th>Status</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>';
-
+                                            <thead class="table-dark">
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>Nama Produk</th>
+                                                    <th>Jenis Brand</th>
+                                                    <th>Jenis Device</th>
+                                                    <th>Deskripsi</th>
+                                                    <th class="text-center" style="width: 120px;">Status</th>
+                                                    <th style="width: 150px;">Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>';
                                         foreach ($cariMahasiswa as $index => $mhs) {
                                             // Konversi status produk
                                             $status = '';
@@ -121,23 +120,25 @@ if (isset($_GET['search'])) {
                                             $id_produk = $mhs['id_produk'] ?? '';
 
                                             echo '<tr>
-                                                    <td>' . ($index + 1) . '</td>
-                                                    <td>' . $nama_produk . '</td>
-                                                    <td>' . $jenis_brand . '</td>
-                                                    <td>' . $jenis_device . '</td>
-                                                    <td>' . $deskripsi . '</td>
-                                                    <td>' . $status . '</td>
-                                                    <td>
-                                                        <button type="button" class="btn btn-sm btn-warning me-1"
-                                                            onclick="window.location.href=\'data-edit.php?id=' . $id_produk . '\'">
-                                                            <i class="bi bi-pencil-fill"></i> Edit
-                                                        </button>
-                                                        <button type="button" class="btn btn-sm btn-danger"
-                                                            onclick="if(confirm(\'Yakin ingin menghapus produk ini?\')){window.location.href=\'proses/proses-delete.php?id=' . $id_produk . '\'}">
-                                                            <i class="bi bi-trash-fill"></i> Hapus
-                                                        </button>
-                                                    </td>
-                                                </tr>';
+        <td>' . ($index + 1) . '</td>
+        <td>' . $nama_produk . '</td>
+        <td>' . $jenis_brand . '</td>
+        <td>' . $jenis_device . '</td>
+        <td class="text-break text-wrap" style="max-width:480px; white-space:normal; word-wrap:break-word; word-break:break-word; padding:8px 12px;">' . $deskripsi . '</td>
+        <td class="text-center align-middle" style="vertical-align: middle;">' . $status . '</td>
+<td class="text-center align-middle" style="vertical-align: middle; white-space: nowrap; padding: 8px 12px;">
+    <button type="button" class="btn btn-sm btn-warning" style="margin-right: 10px;"
+        onclick="window.location.href=\'data-edit.php?id=' . $id_produk . '\'">
+        <i class="bi bi-pencil-fill"></i> Edit
+    </button>
+    <button type="button" class="btn btn-sm btn-danger"
+        onclick="if(confirm(\'Yakin ingin menghapus produk ini?\')){window.location.href=\'proses/proses-delete.php?id=' . $id_produk . '\'}">
+        <i class="bi bi-trash-fill"></i> Hapus
+    </button>
+</td>
+
+    </tr>';
+
                                         }
 
                                         echo '</tbody></table>';
