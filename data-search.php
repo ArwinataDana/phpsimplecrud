@@ -2,6 +2,7 @@
 include_once 'config/class-mahasiswa.php';
 $mahasiswa = new Mahasiswa();
 $kataKunci = '';
+$cariMahasiswa = []; // inisialisasi agar aman jika tidak ada parameter search
 
 // Mengecek apakah ada parameter GET 'search'
 if (isset($_GET['search'])) {
@@ -114,7 +115,8 @@ if (isset($_GET['search'])) {
 
                                             // Hindari undefined index & nilai null
                                             $nama_produk = htmlspecialchars($mhs['nama_produk'] ?? '', ENT_QUOTES);
-                                            $jenis_brand = htmlspecialchars($mhs['jenis_brand'] ?? '', ENT_QUOTES);
+                                            // **PERBAIKAN UTAMA**: gunakan 'nama_brand' (bukan 'jenis_brand')
+                                            $jenis_brand = htmlspecialchars($mhs['nama_brand'] ?? '', ENT_QUOTES);
                                             $jenis_device = htmlspecialchars($mhs['jenis_device'] ?? '', ENT_QUOTES);
                                             $deskripsi = htmlspecialchars($mhs['deskripsi'] ?? '', ENT_QUOTES);
                                             $id_produk = $mhs['id_produk'] ?? '';
