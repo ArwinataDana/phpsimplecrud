@@ -1,4 +1,269 @@
 /* Taruh CSS Custom Disini */
+.poppins-thin {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+.poppins-extralight {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.poppins-light {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.poppins-medium {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-bold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.poppins-extrabold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.poppins-black {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
+.poppins-thin-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+
+.poppins-extralight-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 200;
+  font-style: italic;
+}
+
+.poppins-light-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+
+.poppins-regular-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.poppins-medium-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+.poppins-bold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.poppins-extrabold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+}
+
+.poppins-black-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.open-sans {
+  font-family: "Open Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
 .bg-body-secondary {
-    background-color: #3d3b3b!important;
+    background-color: #0f172a !important; /* Warna dasar sidebar yang lebih gelap dan elegan */
+    border-right: 1px solid #1e293b; /* Garis pemisah halus */
+}
+
+.nav-header {
+    color: #FFFFFF!important;
+}
+
+.brand-text fw-light{
+    color: #FFFFFF!important;
+}
+
+div.card-header {
+    background-color: #1f2937;
+    color: #FFFFFF!important;
+}
+
+button.btn.btn-tool {
+    color: #FFFFFF!important;
+}
+
+h3.mb-0 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+div.card-body {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+div.card-header {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.btn {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+div.sidebar-brand {
+    font-family: "Inter", sans-serif;
+    font-weight: 600 !important;
+    font-style: normal;
+    color: #FFFFFF !important;
+}
+
+.btn.btn-primary.btn-lg {
+    font-family: "Inter", sans-serif;
+    font-weight: 550;
+    font-style: normal;
+    background: linear-gradient(135deg, #007BFF, #28A745); /* Biru ke Hijau */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+.btn.btn-primary.btn-lg:hover {
+    background: linear-gradient(135deg, #0056b3, #1e7c32);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 123, 255, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-success.btn-lg {
+    font-family: "Inter", sans-serif;
+    font-weight: 550;
+    font-style: normal;
+    background: linear-gradient(135deg, #6F42C1, #E83E8C); /* Ungu ke Magenta */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(111, 66, 193, 0.2);
+}
+
+.btn.btn-success.btn-lg:hover {
+    background: linear-gradient(135deg, #5A32A0, #C82070);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(111, 66, 193, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn.btn-warning.btn-lg {
+    font-family: "Inter", sans-serif;
+    font-weight: 550;
+    font-style: normal;
+    background: linear-gradient(135deg, #FFC107, #FF5722); /* Kuning ke Oranye */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(255, 193, 7, 0.2);
+}
+
+.btn.btn-warning.btn-lg:hover {
+    background: linear-gradient(135deg, #CC9A00, #E64A19);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(255, 193, 7, 0.3);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.nav-link {
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    color: #e0e0e0;
+    padding: 12px 20px;
+    margin: 4px 0;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    background: transparent;
+}
+
+/* Efek hover untuk MASTER DATA (warna berbeda agar terlihat kategori) */
+.nav-link:hover {
+    background: linear-gradient(135deg, #cec516, #cec516);
+    color: white;
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(16, 185, 128, 0.3);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link:hover i {
+    transform: scale(1.1);
 }

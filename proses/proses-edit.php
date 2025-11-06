@@ -4,9 +4,9 @@ $mahasiswa = new Mahasiswa();
 
 // Ambil data dari form edit produk
 $dataMahasiswa = [
-    'id_produk'     => $_POST['id_produk'],
+    'id_produk'     => $_POST['id_produk'], // ✅ gunakan nama 'id_produk' agar konsisten
     'nama_produk'   => $_POST['nama_produk'],
-    'nama_brand'    => $_POST['jenis_brand'],
+    'nama_brand'    => $_POST['jenis_brand'], // ✅ sesuaikan dengan nama kolom di class
     'jenis_device'  => $_POST['jenis_device'],
     'deskripsi'     => $_POST['deskripsi'],
     'status_produk' => $_POST['status_produk']

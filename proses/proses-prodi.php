@@ -24,11 +24,11 @@ if ($_GET['aksi'] == 'inputprodi') {
     }
 
 } elseif ($_GET['aksi'] == 'updateprodi') {
-    // Mengambil data brand dari form edit menggunakan metode POST
+    // ✅ Perbaikan utama: sesuaikan nama field dengan form edit
+    // Form master-prodi-edit.php mengirimkan 'kode' dan 'nama'
     $dataProdi = [
-        'id_brand'    => isset($_POST['id_brand']) ? $_POST['id_brand'] : null,        // sebelumnya 'id'
-        'kode_brand'  => isset($_POST['kode_brand']) ? $_POST['kode_brand'] : null,    // sebelumnya 'kode'
-        'jenis_brand' => isset($_POST['jenis_brand']) ? $_POST['jenis_brand'] : null   // sebelumnya 'nama'
+        'kode' => isset($_POST['kode']) ? $_POST['kode'] : null,
+        'nama' => isset($_POST['nama']) ? $_POST['nama'] : null
     ];
 
     // Memanggil method updateProdi untuk mengupdate data brand
@@ -38,7 +38,7 @@ if ($_GET['aksi'] == 'inputprodi') {
         header("Location: ../master-prodi-list.php?status=editsuccess");
     } else {
         // Jika gagal
-        header("Location: ../master-prodi-edit.php?id=" . $dataProdi['id_brand'] . "&status=failed");
+        header("Location: ../master-prodi-edit.php?id=" . $dataProdi['kode'] . "&status=failed");
     }
 
 } elseif ($_GET['aksi'] == 'deleteprodi') {
