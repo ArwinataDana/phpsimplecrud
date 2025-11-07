@@ -140,7 +140,6 @@ if (isset($_GET['search'])) {
                                             </td>
 
                                                 </tr>';
-
                                         }
 
                                         echo '</tbody></table>';
